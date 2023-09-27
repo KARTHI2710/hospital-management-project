@@ -6,7 +6,7 @@ from reportresult import Ui_reportresultForm
 from refdrmaster import Ui_refdrForm
 from testmaster import Ui_testmasterForm
 from pathologistmaster import Ui_pathologistForm
-from login import Ui_LoginForm
+#from login import Ui_LoginForm
 
 
 class Ui_MainWindow(object):

@@ -561,20 +561,24 @@ class Ui_PatientMasterForm(object):
 
 
     def generate_bar_code_pdf(self, access):
-        barcode.generate('Code128', str(access), output=os.path.join('images', 'barcode1'))
-        x = 100  # Adjust the x-coordinate as needed
-        y = 500  # Adjust the y-coordinate as needed
-        width = 200  # Adjust the width as needed
-        height = 50  
-        # Create a PDF with the barcode image.
-        pdf_filename = f'barcode_{access[1]}.pdf'
-        c = canvas.Canvas(pdf_filename)
-        c.drawImage(os.path.join('images', 'barcode.png'),x,y,height=100)  # Adjust x, y, width, height as needed
-        c.showPage()
-        c.save()
+        barcode.generate('Code128', str(access), writer=ImageWriter(),output='barcode1')
+        # x = 100  # Adjust the x-coordinate as needed
+        # y = 500  # Adjust the y-coordinate as needed
+        # width = 200  # Adjust the width as needed
+        # height = 50  
+        # # Create a PDF with the barcode image.
+        # pdf_filename = f'barcode_{access[1]}.pdf'
+        # c = canvas.Canvas(pdf_filename)
+        # c.drawImage(os.path.join('images', 'barcode.png'),x,y,height=100)  # Adjust x, y, width, height as needed
+        # c.showPage()
+        # c.save()
 
-        # Optionally, you can open the generated PDF.
-        os.system(pdf_filename)
+        # # Optionally, you can open the generated PDF.
+        # os.system(pdf_filename)
+        pdf=FPDF()
+        pdf.add_page()
+        pdf.image('barcode1.png',x=100,y=100,w=30)
+        pdf.output(f'barcode{access}.pdf')
 
 
 
