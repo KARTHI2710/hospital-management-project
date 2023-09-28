@@ -79,31 +79,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-
-        self.patient_master_frame = QtWidgets.QFrame()
-        self.patient_master_ui = Ui_PatientMasterForm()# patient master
-        self.patient_master_ui.setupUi(self.patient_master_frame)
-    
-        self.add_refdr_frame = QtWidgets.QFrame()
-        self.add_refdr_ui = Ui_refdrForm()# refdr master
-        self.add_refdr_ui.setupUi(self.add_refdr_frame)
         
-        self.add_testmaster_frame = QtWidgets.QFrame()
-        self.add_testmaster_ui = Ui_testmasterForm()# Test master
-        self.add_testmaster_ui.setupUi(self.add_testmaster_frame)
-        
-        self.reportformat_frame = QtWidgets.QFrame()
-        self.reportformat_ui = Ui_reportresultForm()# report format
-        self.reportformat_ui.setupUi(self.reportformat_frame)
-        
-        self.pathologist_frame = QtWidgets.QFrame()
-        self.pathologist_ui = Ui_pathologistForm()# pathology
-        self.pathologist_ui.setupUi(self.pathologist_frame)
-
-
-        
-        
-
         self.ui.actionRegistration_Summary.triggered.connect(self.show_patient_master_frame)
         self.ui.actionRefDr_Master.triggered.connect(self.show_refdr_frame)
         self.ui.actionTest_Master.triggered.connect(self.show_testmaster_frame) 
@@ -119,31 +95,56 @@ class MainWindow(QtWidgets.QMainWindow):
         
         self.stacked_widget = QtWidgets.QStackedWidget(self)
         self.stacked_widget.addWidget(self.ui.centralwidget)
-        self.stacked_widget.addWidget(self.patient_master_frame)
-        self.stacked_widget.addWidget(self.add_refdr_frame)
-        self.stacked_widget.addWidget(self.add_testmaster_frame)
-        self.stacked_widget.addWidget(self.reportformat_frame)
-        self.stacked_widget.addWidget(self.pathologist_frame)
+        
+        
+        
+        
+        
         self.setCentralWidget(self.stacked_widget)
     
         self.show_patient_master_frame()
 
 
     def show_pathologist_frame(self):
+        if not hasattr(self, 'pathologist_frame'):
+            self.pathologist_frame = QtWidgets.QFrame()
+            self.pathologist_ui = Ui_pathologistForm()# pathology
+            self.pathologist_ui.setupUi(self.pathologist_frame)
+            self.stacked_widget.addWidget(self.pathologist_frame)
         self.stacked_widget.setCurrentWidget(self.pathologist_frame)
     
 
     def show_patient_master_frame(self):
+        if not hasattr(self, 'patient_master_frame'):
+            self.patient_master_frame = QtWidgets.QFrame()
+            self.patient_master_ui = Ui_PatientMasterForm()# patient master
+            self.patient_master_ui.setupUi(self.patient_master_frame)
+            self.stacked_widget.addWidget(self.patient_master_frame)
         self.stacked_widget.setCurrentWidget(self.patient_master_frame)
         
     def show_refdr_frame(self):
+        if not hasattr(self, 'add_refdr_frame'):
+            self.add_refdr_frame = QtWidgets.QFrame()
+            self.add_refdr_ui = Ui_refdrForm()# refdr master
+            self.add_refdr_ui.setupUi(self.add_refdr_frame)
+            self.stacked_widget.addWidget(self.add_refdr_frame)
         self.stacked_widget.setCurrentWidget(self.add_refdr_frame)    
 
     def show_testmaster_frame(self):
+        if not hasattr(self, 'add_testmaster_frame'):
+            self.add_testmaster_frame = QtWidgets.QFrame()
+            self.add_testmaster_ui = Ui_testmasterForm()# Test master
+            self.add_testmaster_ui.setupUi(self.add_testmaster_frame)
+            self.stacked_widget.addWidget(self.add_testmaster_frame)
         self.stacked_widget.setCurrentWidget(self.add_testmaster_frame) 
        
     def show_reportformat_frame(self):
-         self.stacked_widget.setCurrentWidget(self.reportformat_frame)     
+        if not hasattr(self, 'reportformat_frame'):
+            self.reportformat_frame = QtWidgets.QFrame()
+            self.reportformat_ui = Ui_reportresultForm()# report format
+            self.reportformat_ui.setupUi(self.reportformat_frame)
+            self.stacked_widget.addWidget(self.reportformat_frame)
+        self.stacked_widget.setCurrentWidget(self.reportformat_frame)     
 
     def show_logout_frame(self):
         self.close()
@@ -159,5 +160,5 @@ if __name__ == "__main__":
     # MainWindow.show()
 
     main_window=MainWindow()
-    main_window.show()
+    #main_window.show()
     sys.exit(app.exec_())

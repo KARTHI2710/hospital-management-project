@@ -389,7 +389,7 @@ class Ui_PatientMasterForm(object):
             report_button = QtWidgets.QPushButton()
             report_button.setIcon(QtGui.QIcon(os.path.join('images', 'report.png')))
             report_button.setFixedSize(20, 20)
-            report_button.clicked.connect(lambda _, row=row: self.open_add_visit_form(row))
+            report_button.clicked.connect(lambda _, row=row: self.save_patient_report(row))
             button_layout.addWidget(report_button)
 
             report_button = QtWidgets.QPushButton()
@@ -665,6 +665,9 @@ class Ui_PatientMasterForm(object):
                 None, 'QR Code PDF',
                 f'QR code PDF for Visit ID {uhid} has been generated as "{pdf_file_path}"'
             )
+
+    def save_patient_report(self,patient_detail):
+        pass
 
     
 
